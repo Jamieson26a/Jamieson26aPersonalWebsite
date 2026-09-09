@@ -1,0 +1,54 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: black;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+div {
+    background-color: lavender;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+div.title {
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+div.desc {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 40px;
+}
+
+div.guestbookHeading {
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-bottom: 10px;
+}
+
+div.centerer {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}
+
+#guestbook {
+    border-radius: 20px;
+}
