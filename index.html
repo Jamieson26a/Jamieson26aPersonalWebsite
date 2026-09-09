@@ -16,11 +16,131 @@
         <div class="desc">
             <p>Hi! My preferred name is Zan, and I'm an NC State student majoring in Computer Science! I use he/they pronouns.</p>
         </div>
+        <div class="infoBox">
+            <p id="clickMe"><strong>Click for more! &#8595;</strong></p>
+            <div class="tabs">
+                <span class="projects" onclick="projectsClicked()">
+                    Projects
+                </span>
+                <span class="education" onclick="educationClicked()">
+                    Education
+                </span>
+                <span class="interests" onclick="interestsClicked()">
+                    Interests
+                </span>
+            </div>
+            <div id="projDiv" class="projects">
+                <h2>Current Projects</h2>
+                <ul>
+                    <li>This website!</li>
+                    <li>Nyewm (Working Title) - A Godot collection game about watching trains</li>
+                    <li>ACM Project (TBD) - A team project I am working on as part of NCSU ACM's Projects Committee</li>
+                </ul>
+            </div>
+            <div id="eduDiv" class="education invisible">
+                <h2>Education</h2>
+                <ul>
+                    <li><strong>Carrboro High School, Carrboro NC</strong>
+                        <ul>
+                            <li>August 2022 - June 2024</li>
+                            <li>Notable classes include Creative Writing II (honors), PLTW Introduction to Engineering Design, PLTW Principles of Engineering, and AP PLTW Computer Science Principles</li>
+                            <li>Promoted composting at the school as leadership of the Green Team club</li>
+                            <li>Led safety initiatives and artistic design at Carrborobotics</li>
+                        </ul>
+                    </li>
+                    <li><strong>North Carolina School of Science and Math, Morganton NC</strong>
+                        <ul>
+                            <li>August 2024 - May 2026</li>
+                            <li>Notable classes include Networks and the Web, Creative Writing, Advanced Computer Science Topics, Human Computer Interaction, Machine Learning, and Data Structures and Algorithms</li>
+                            <li>Facilitated learning of computer science as a Computer Science Teaching Assistant</li>
+                            <li>Collaborated on a research project that led to us publishing a paper on high school interactions with AI at the Association for Computing Machinery Southeast 2026 conference</li>
+                        </ul>
+                    </li>
+                    <li><strong>North Carolina State University, Raleigh NC</strong>
+                        <ul>
+                            <li>August 2026 - Present</li>
+                            <li>Notable classes include Introduction to Philosophy and Introduction to Computing in Java</li>
+                            <li>Part of the Association for Computing Machinery Projects Committee</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="intDiv" class="interests invisible">
+                <h2>Interests</h2>
+                <ul>
+                    <li><strong>Hobbies</strong>
+                        <ul>
+                            <li>Crochet</li>
+                            <li>Videogames (when I have the time!)</li>
+                            <li>Game development</li>
+                            <li>Art</li>
+                            <li>Kandi making</li>
+                            <li>Theatre</li>
+                        </ul>
+                    </li>
+                    <li><strong>Media</strong>
+                        <ul>
+                            <li>The Professor Layton Series</li>
+                            <li>Deltarune</li>
+                            <li>Rhythm Doctor</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div class="guestbookHeading">
             <h2>Guestbook</h2>
         </div>
         <div class="centerer">
             <iframe id="guestbook" width="50%" height="400" src="https://zanjamieson.atabook.org" ></iframe>
         </div>
+            <div class="centerer">
+                <div class="disclaimer">
+                <p>
+                    No part of this website was made using generative AI.
+                </p>
+            </div>
+        </div>
+
+        <script>
+            let projDiv;
+            let eduDiv;
+            let intDiv;
+            let clickMe;
+
+            // Initializes variables once webpage loads
+            function init() {
+                projDiv = document.getElementById("projDiv");
+                eduDiv = document.getElementById("eduDiv");
+                intDiv = document.getElementById("intDiv");
+                clickMe = document.getElementById("clickMe");
+            }
+
+            // Changes info box to display current projects
+            function projectsClicked() {
+                projDiv.classList.remove('invisible');
+                eduDiv.classList.add('invisible');
+                intDiv.classList.add('invisible');
+                clickMe.classList.add('invisible');
+            }
+
+            // Changes info box to display education
+            function educationClicked() {
+                projDiv.classList.add('invisible');
+                eduDiv.classList.remove('invisible');
+                intDiv.classList.add('invisible');
+                clickMe.classList.add('invisible');
+            }
+
+            // Changes info box to display interests
+            function interestsClicked() {
+                projDiv.classList.add('invisible');
+                eduDiv.classList.add('invisible');
+                intDiv.classList.remove('invisible');
+                clickMe.classList.add('invisible');
+            }
+
+            window.onload = init;
+        </script>
     </body>
 </html>
