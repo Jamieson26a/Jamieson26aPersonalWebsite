@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Outdoor Outlet NCSU Tool</title>
+        <link href="style.css" rel="stylesheet" type="text/css" media="all">
+        <style type="text/css">
+            .marker-pin {
+                width: 30px;
+                height: 30px;
+                border-radius: 50% 50% 50% 0;
+                background: #FF5722;
+                position: absolute;
+                transform: rotate(-45deg);
+                left: 50%;
+                top: 50%;
+                margin: -15px 0 0 -15px;
+            }
+            .marker-pin::after {
+                content: "";
+                width: 14px;
+                height: 14px;
+                margin: 8px 0 0 8px;
+                background: #fff;
+                position: absolute;
+                border-radius: 50%;
+            }
+            .custom-div-icon {
+                position: relative;
+            }
+            .map-corner-logo {
+                position: absolute;
+                bottom: 2px;
+                right: 2px;
+                background-color: rgba(255, 255, 255, 0.6);
+                padding: 1px;
+                font-size: 10px;
+                border-radius: 2px;
+                z-index: 400;
+            }
+            .map-corner-logo a {
+                color: #999;
+                text-decoration: none;
+            }
+
+            div {
+                background-color: transparent;
+                padding: 0px;
+                border-radius: 0px;
+            }
+
+            div.styled {
+                background-color: lavender;
+                padding: 10px;
+                border-radius: 10px;
+            }
+        </style>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    </head>
+
+    <body>
+        <a class="button home" href="index.html">
+            Home
+        </a>
+        <div class="centerer">
+            <div class="title styled"><h1>Outdoor Outlets at NC State</h1></div>
+        </div>
+        <div class="desc styled">
+            <p>In the map embed below are markers for every outdoor outlet I have found thus far! Feel free to use this resource to find places to charge electric scooters and bikes on campus.</p>
+            <br><br>
+            <p><strong>Please let me know if you find any outdoor outlets on campus that are not listed on this map! You can email me at <em><a href="mailto:atconlinepurchase@gmail.com">atconlinepurchase@gmail.com</a></em>.</strong></p>
+        </div>
+        <!-- Leaflet Map Embed -->
+        <div class="centerer">
+            <div style="width: 100%; max-width: 600px;">
+                <div id="map-97203" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
+
+        <div class="centerer">
+            <div class="disclaimer styled">
+                <p>
+                    No part of this website was made using generative AI.
+                </p>
+            </div>
+        </div>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script>
+            // Initialize map when page loads
+            window.onload = function() {
+                // Create modern marker icon
+                var customIcon = L.divIcon({
+                className: "custom-div-icon",
+                html: '<div class="marker-pin "></div>',
+                iconSize: [30, 42],
+                iconAnchor: [15, 42]
+                });
+
+                // Create map
+                var map = L.map("map-97203", {
+                zoomControl: true
+                }).setView([0, 0], 18);
+
+                // Define base layers
+                var baseLayers = {};
+                baseLayers["Satellite"] = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                });
+                baseLayers["ESRI Terrain"] = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}", {
+                attribution: 'Tiles &copy; Esri &mdash; Source: USGS, Esri, TANA, DeLorme, and NPS'
+                });
+
+                // Add default layer to map
+                baseLayers["Satellite"].addTo(map);
+
+                // Add layer control
+                L.control.layers(baseLayers).addTo(map);
+
+                // Add corner logo
+                var cornerLogoDiv = document.createElement("div");
+                cornerLogoDiv.className = "map-corner-logo";
+                cornerLogoDiv.innerHTML = '<a href="https://mapscaping.com/?ref=tool" target="_blank">Map</a>';
+
+                var cornerLogo = L.Control.extend({
+                options: { position: "bottomright" },
+                onAdd: function() { return cornerLogoDiv; }
+                });
+                new cornerLogo().addTo(map);
+
+                // Add markers
+                var markerList = [
+                {
+                    position: [35.78535939792363, -78.67444986684755],
+                    title: "Witherspoon"
+                },
+                {
+                    position: [35.78553346521559, -78.66802239220465],
+                    title: "Lampe"
+                },
+                {
+                    position: [35.787395961378344, -78.67361913067036],
+                    title: "Fox Labs"
+                },
+                {
+                    position: [35.76993987540422, -78.6772508898332],
+                    title: "Solar Panel"
+                },
+                {
+                    position: [35.786665539264526, -78.67723894903855],
+                    title: "Sullivan Hall"
+                }
+                ];
+
+                // Add individual markers
+                markerList.forEach(function(item) {
+                var marker = L.marker(item.position, { icon: customIcon }).addTo(map);
+                marker.bindPopup(item.title);
+                });
+
+                // Set view to show all markers
+                var bounds = L.latLngBounds(markerList.map(function(item) { return item.position; }));
+                map.fitBounds(bounds, { padding: [50, 50] });
+            };
+        </script>
+    </body>
+</html>

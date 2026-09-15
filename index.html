@@ -10,22 +10,32 @@
     </head>
 
     <body>
-        <div class="title">
-            <h1>Zan Jamieson</h1>
+        <div class="centerer">
+            <div class="title">
+                <h1>Zan Jamieson</h1>
+            </div>
         </div>
         <div class="desc">
             <p>Hi! My preferred name is Zan, and I'm an NC State student majoring in Computer Science! I use he/they pronouns.</p>
         </div>
+        <div class="centerer">
+            <a class="button" href="electric.html">
+                <strong>
+                    Have an electric bike/scooter at NC State?<br>
+                    Click here for a map of outdoor outlets!
+                </strong>
+            </a>
+        </div>
         <div class="infoBox">
             <p id="clickMe"><strong>Click for more! &#8595;</strong></p>
             <div class="tabs">
-                <span class="projects" onclick="projectsClicked()">
+                <span class="projects clicker" onclick="projectsClicked()">
                     Projects
                 </span>
-                <span class="education" onclick="educationClicked()">
+                <span class="education clicker" onclick="educationClicked()">
                     Education
                 </span>
-                <span class="interests" onclick="interestsClicked()">
+                <span class="interests clicker" onclick="interestsClicked()">
                     Interests
                 </span>
             </div>
@@ -33,6 +43,7 @@
                 <h2>Current Projects</h2>
                 <ul>
                     <li>This website!</li>
+                    <li>The NC State Outdoor Outlet Map</li>
                     <li>Nyewm (Working Title) - A Godot collection game about watching trains</li>
                     <li>ACM Project (TBD) - A team project I am working on as part of NCSU ACM's Projects Committee</li>
                 </ul>
@@ -94,8 +105,8 @@
         <div class="centerer">
             <iframe id="guestbook" width="50%" height="400" src="https://zanjamieson.atabook.org" ></iframe>
         </div>
-            <div class="centerer">
-                <div class="disclaimer">
+        <div class="centerer">
+            <div class="disclaimer">
                 <p>
                     No part of this website was made using generative AI.
                 </p>
